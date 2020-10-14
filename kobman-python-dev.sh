@@ -48,18 +48,21 @@ function __kobman_uninstall_python-dev(){
 
 }
 
-__kobman_validate_python(){
+function __kobman_validate_python(){
     python3 --version
     if [[ "$?" != "0" ]]; then
         echo "No python package found. Test failed!"
+        return 1
         
     else
         echo "Python package exists"
         if [[ -d "$HOME/python-dev" ]]; then
             echo "Virtual environment exists" 
             echo "Test Sucessful!!"
+            return 0
         else
             echo "Test Failed!!"
+            return 1
         fi
     fi
 }
