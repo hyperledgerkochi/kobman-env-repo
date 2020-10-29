@@ -13,7 +13,7 @@ function __test_kob_init
         
     fi
 
-    python3 --version
+    python3 --version | grep -qi "python"
     if [[ "$?" != "0" ]]; then
         echo "No python package found. Test failed!"
         echo "Exiting!"
@@ -25,7 +25,8 @@ function __test_kob_init
 
 function __test_kob_validate
 {
-    local ret_value=$(__kobman_validate_python)
+    __kobman_validate_python
+    local ret_value=$?
     if [[ $ret_value == "1" ]]; then
         test_status="failed"
         return 1
@@ -46,4 +47,5 @@ function __test_kob_run
         __kobman_echo_red "test-kob-python-dev failed"
     fi
 }
+
 __test_kob_run

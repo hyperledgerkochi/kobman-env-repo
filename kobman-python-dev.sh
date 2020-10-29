@@ -18,6 +18,9 @@ function __kobman_install_python-dev(){
     echo "Creating python virtual environment"
     python3 -m venv $HOME/python-dev
     create_test_script > $HOME/python-dev/test.py
+    mkdir -p $HOME/python-dev/test
+    wget https://raw.githubusercontent.com/$KOBMAN_NAMESPACE/kobman_env_repo/master/test-kobman-python.sh
+    mv $HOME/test-kobman-python.sh $HOME/python-dev/test
     read -p "Do you want to install Visual Studio Code as your python IDE?[y/n]" ans
     if [[ $ans == "y" || $ans == "Y" ]]; then
         echo "Installing IDE for development"
@@ -48,20 +51,18 @@ function __kobman_uninstall_python-dev(){
 
 }
 
-function __kobman_validate_python(){
-    python3 --version
+function __kobman_validate_python
+{
+    python3 --version | grep -qi "python"
     if [[ "$?" != "0" ]]; then
-        echo "No python package found. Test failed!"
+        echo "No python package found."
         return 1
         
     else
-        echo "Python package exists"
         if [[ -d "$HOME/python-dev" ]]; then
-            echo "Virtual environment exists" 
-            echo "Test Sucessful!!"
             return 0
         else
-            echo "Test Failed!!"
+            echo "Could not find python folder"
             return 1
         fi
     fi

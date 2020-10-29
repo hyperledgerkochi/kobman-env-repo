@@ -1,1 +1,1 @@
-hyperledgerkochi/kobman_env_repo/python,0.0.1
+hyperledgerkochi/kobman_env_repo/python-dev,0.0.1
