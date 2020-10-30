@@ -19,7 +19,7 @@ function __kobman_install_python-dev(){
     python3 -m venv $HOME/python-dev
     create_test_script > $HOME/python-dev/test.py
     mkdir -p $HOME/python-dev/test
-    wget https://raw.githubusercontent.com/$KOBMAN_NAMESPACE/kobman_env_repo/master/test-kobman-python.sh
+    wget https://raw.githubusercontent.com/$KOBMAN_NAMESPACE/kobman-env-repo/master/test-kobman-python.sh
     mv $HOME/test-kobman-python.sh $HOME/python-dev/test
     read -p "Do you want to install Visual Studio Code as your python IDE?[y/n]" ans
     if [[ $ans == "y" || $ans == "Y" ]]; then
